@@ -1,0 +1,13 @@
+node {
+   stage('Checkout') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/spring-projects/spring-petclinic.git'
+   }
+   stage('Build') {
+      // Run the maven build
+      sh './mvnw package'
+   }
+   stage('Deploy') {
+      echo "deploy"
+   }
+}
