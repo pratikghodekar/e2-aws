@@ -1,0 +1,7 @@
+---
+#- name: deploy
+- hosts: "{{ host }}"
+  remote_user: "jenkins"
+  become: yes
+  tasks:
+    - include: backend.yml
