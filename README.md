@@ -6,3 +6,5 @@
 4. Edit ip address in deploy-build/environments/dev/hosts file with Private instance ip and commit change.
 5. Login to Jenkins instance, edit /etc/httpd/conf.d/app.conf file, replace localhost with Private instance ip & restart httpd service
 6. Run pipeline job & once completed open the url http://{PUBLIC_IP}/spring-petclinic
+
+Note : appliction startup may take some time
