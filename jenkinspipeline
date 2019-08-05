@@ -1,4 +1,7 @@
 node {
+   stage('Cleanup') { // for display purposes
+     cleanWs()
+   }
    stage('Checkout') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/spring-projects/spring-petclinic.git'
@@ -8,6 +11,8 @@ node {
       sh './mvnw package'
    }
    stage('Deploy') {
-      echo "deploy"
+      sh 'cp target/spring-petclinic*.jar /mnt/artefact/spring-petclinic.jar'
+      sh 'git clone https://github.com/pratikghodekar/e2-aws.git'
+      sh 'cd e2-aws/deploy-build && ansible-playbook -i environments/dev site.yml -e "host=dev"'
    }
 }
