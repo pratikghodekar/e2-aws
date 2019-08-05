@@ -14,7 +14,7 @@
 
 - name: Copy file
   copy:
-    src: /tmp/spring-petclinic.jar
+    src: /mnt/artefact/spring-petclinic.jar
     dest: /opt/spring-petclinic/spring-petclinic.jar
     owner: jenkins
     group: jenkins
