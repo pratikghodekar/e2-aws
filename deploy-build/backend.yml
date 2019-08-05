@@ -1,0 +1,24 @@
+---
+- name: Get running process
+  shell: "ps -eaf | grep -v grep | grep 'java -jar /opt/spring-petclinic' | awk '{print $2}'"
+  register: running_process
+
+- name: Kill running process
+  shell: "kill -9 {{ item }}"
+  with_items: "{{ running_process.stdout_lines }}"
+
+- name: remove file
+  file:
+    state: absent
+    path: /opt/spring-petclinic/spring-petclinic.jar
+
+- name: Copy file
+  copy:
+    src: /tmp/spring-petclinic.jar
+    dest: /opt/spring-petclinic/spring-petclinic.jar
+    owner: jenkins
+    group: jenkins
+    mode: '0644'
+
+- name: Run the command
+  shell: nohup java -jar /opt/spring-petclinic/spring-petclinic.jar &
