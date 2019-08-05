@@ -21,4 +21,4 @@
     mode: '0644'
 
 - name: Run the command
-  shell: nohup java -jar /opt/spring-petclinic/spring-petclinic.jar &
+  shell: nohup java -jar /opt/spring-petclinic/spring-petclinic.jar --server.servlet.context-path=/spring-petclinic &
